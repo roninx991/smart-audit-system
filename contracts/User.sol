@@ -66,7 +66,7 @@ contract User {
   }
 
   function getUserAtIndex(uint index)
-    public view
+    public view 
     returns(address userAddress)
   {
     return userIndex[index];

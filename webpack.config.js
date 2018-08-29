@@ -2,18 +2,33 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
-  entry: './app/scripts/index.js',
-  mode: 'production',
+  entry: {
+    app: './app/scripts/index.js',
+    accountant: './app/scripts/accountant.js',
+    client: './app/scripts/client.js',
+    card: './app/scripts/card.js',
+  },
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'app.js'
+    filename: '[name].js'
   },
   plugins: [
     // Copy our app's index.html to the build folder.
     new HtmlWebpackPlugin({ 
       filename: 'index.html',
       template: './app/index.html',
-      chunks: ['main'] 
+      chunks: ['app', 'card'] 
+    }),
+    new HtmlWebpackPlugin({
+        filename: 'client.html', 
+        template: './app/client.html',
+        chunks: ['client']
+    }),
+    new HtmlWebpackPlugin({
+        filename: 'accountant.html', 
+        template: './app/accountant.html',
+        chunks: ['accountant']
     })
   ],
   devtool: 'source-map',

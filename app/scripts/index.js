@@ -3,20 +3,13 @@ import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
 // Import Sweetalert
-import swal from 'sweetalert';
-
-// Import bootstrap
-import 'bootstrap';
-
-// Import the page's CSS. Webpack will know what to do with it.
-import "../styles/app.css";
 
 // Import libraries we need.
 import { default as Web3 } from 'web3';
 import { default as contract } from 'truffle-contract';
 
-import user_atrifacts from '../../build/contracts/User.json'
-var User = contract(user_atrifacts);
+import user_artifacts from '../../build/contracts/User.json'
+var User = contract(user_artifacts);
 
 var accounts;
 var account;
@@ -41,7 +34,7 @@ window.App = {
 
       }).catch(function(e) {
         // There was an error! Handle it.
-        console.log('error creating user:', eth, ':', e);
+        console.log('error signing user:', eth, ':', e);
         swal("Something went wrong!", "Error in signing in", "error");
 
       });
@@ -174,43 +167,3 @@ App.start();
 });
 
 
-// ================================= Frontend ===============================
-
-var signIn = $('.sign-in'),
-   signUp = $('.sign-up'),
-   card1 = $('#card-box-main-1'),
-   card2 = $('#card-box-main-2'),
-   submit = $('.submit');
-
-function ifActive(elem){
-  if (elem.hasClass('active')) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function switchCards(){
-  signUp.on('click', function(e){
-    // e.preventDefault();
-    if (ifActive(signIn)){
-      signUp.addClass('active');
-      signIn.removeClass('active');
-      card1.removeClass('show-me').addClass('hide-me');
-      card2.removeClass('hide-me').addClass('show-me animated bounceInRight');
-      }
-    }
-  );
-  signIn.on('click', function(e){
-    // e.preventDefault();
-    if (ifActive(signUp)) {
-      signUp.removeClass('active');
-      signIn.addClass('active');
-      card2.removeClass('show-me').addClass('hide-me');
-      card1.removeClass('hide-me').addClass('show-me animated bounceInLeft');
-    }
-  });
-    
-}
-
-switchCards();
