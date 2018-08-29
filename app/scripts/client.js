@@ -90,9 +90,16 @@ window.App = {
 								contractInstance.isOwner(web3.eth.accounts[0], hash).then(function(ans) {
 									if(ans) {
 										contractInstance.displayDocStatus(hash).then(function(stat) {
+											var s;
+											if(stat == 0)
+												s = "Accepted";
+											else if(stat == 1)
+												s = "Pending...";
+											else
+												s = "Rejected";
 											document.getElementById("uploads").style.display = "block";
 											document.getElementById("no-uploads").style.display = "none";
-											document.getElementById("uploads").innerHTML += "<div class='files'><span class='hash'>" + hash + "</span><span class='file-status'>Status: " + stat + "</span></div>";
+											document.getElementById("uploads").innerHTML += "<div class='files'><span class='hash'>" + hash + "</span><span class='file-status'>Status: " + s + "</span></div>";
 										});
 									}
 								});
