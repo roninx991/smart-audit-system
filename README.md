@@ -3,7 +3,7 @@ Audit System built on Ethereum Blockchain using web3, truffle and javascript.
 
 The industrial revolution advanced the growth of new companies and paved the way for the development of the industrial sector. Today each of the firm requires audit to be done on a yearly or quaterly basis for ensuring the smooth flow of activities within the organization. Blockchain is considered as the second biggest invention after the internet. This technology has changed the way business is performed. The principle feature of blockchain is removal of third party authorities. We have exploited this feature of blockchain to create a decentralized platform for audit which will help in preventing the various scams and frauds. This will lead to the overall development and growth of our nation.
 
-**Note: This application is in development phase. This repo contains the basic modules that the application will contain. More modules can be added as per requirement.
+**Note: This application is in development phase. This repo contains the basic modules that the application will contain. More modules can be added as per requirement.**
 
 The basic applicaton consists of 3 modules:
 - User Signup and Signin
@@ -45,7 +45,7 @@ ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "[\"*\"]"
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials "[\"true\"]"
 ipfs daemon
 ```
-**Note: No other application should be running on port 8080 else IPFS won't start.
+**Note: No other application should be running on port 8080 else IPFS won't start.**
 
 9. Now your local IPFS is up and running and hosted on port 8080. Now in another terminal at the same location type the following:
 ```
@@ -64,6 +64,6 @@ Type the respective page name after the / in the browser to use that page. you c
 For usage details and demonstration watch the [video](https://youtu.be/0o5oC16X-BA)
 
 # Contributors
-[Sangat Das](https://github.com/Sangatdas)
-[Chinmay Saraf]()
-[Minal Mallwat]()
+-[Sangat Das](https://github.com/Sangatdas)
+-[Chinmay Saraf]()
+-[Minal Mallwat]()
