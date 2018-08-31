@@ -64,6 +64,6 @@ Type the respective page name after the / in the browser to use that page. you c
 For usage details and demonstration watch the [video](https://youtu.be/0o5oC16X-BA)
 
 # Contributors
--[Sangat Das](https://github.com/Sangatdas)
--[Chinmay Saraf]()
--[Minal Mallwat]()
+  -[Sangat Das](https://github.com/Sangatdas)
+  -[Chinmay Saraf]()
+  -[Minal Mallwat]()
