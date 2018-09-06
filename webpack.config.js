@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: {
     app: './app/scripts/index.js',
-    accountant: './app/scripts/accountant.js',
-    client: './app/scripts/client.js',
+    reviewer: './app/scripts/reviewer.js',
+    uploader: './app/scripts/uploader.js',
     card: './app/scripts/card.js',
   },
   mode: 'development',
@@ -21,14 +21,14 @@ module.exports = {
       chunks: ['app', 'card'] 
     }),
     new HtmlWebpackPlugin({
-        filename: 'client.html', 
-        template: './app/client.html',
-        chunks: ['client']
+        filename: 'uploader.html', 
+        template: './app/uploader.html',
+        chunks: ['uploader']
     }),
     new HtmlWebpackPlugin({
-        filename: 'accountant.html', 
-        template: './app/accountant.html',
-        chunks: ['accountant']
+        filename: 'reviewer.html', 
+        template: './app/reviewer.html',
+        chunks: ['reviewer']
     })
   ],
   devtool: 'source-map',
