@@ -65,5 +65,4 @@ For usage details and demonstration watch the [video](https://youtu.be/0o5oC16X-
 
 # Contributors
   - [Sangat Das](https://github.com/Sangatdas)
-  - [Chinmay Saraf]()
-  - [Minal Mallwat]()
+  - [Chinmay Saraf](https://github.com/ChinuSaraf)
