@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 import 'bootstrap';
 
 // Import the page's CSS. Webpack will know what to do with it.
-import "../styles/accountant.css";
+import "../styles/reviewer.css";
 
 // Import libraries we need.
 import { default as Web3 } from 'web3';
@@ -25,14 +25,15 @@ const ipfs = ipfsAPI('localhost','5001',{protocol: 'http'});
 
 window.App = {
 	
+	// App Initialiser
 	start: function() {
 		var self = this;
 		var c;
 		if(load > 0)
 		{
-			User.setProvider(web3.currentProvider);
+			User.setProvider(web3.currentProvider);			// In our case we will be using metamask as our web3 provider
 			User.deployed().then(function(contractInstance) {
-				contractInstance.displayDocCount().then(function(count) {
+				contractInstance.displayDocCount().then(function(count) {		// returns number of documents uploaded
 					c = parseInt(count);
 					document.getElementById("uploads").style.display = "none";
 					document.getElementById("no-uploads").style.display = "block";
@@ -40,9 +41,9 @@ window.App = {
 					if (c > 0) {
 						document.getElementById("uploads").style.display="block";
 						for (var i = 0; i < c; i++) {
-							contractInstance.displayHash(i).then(function(h) {
+							contractInstance.displayHash(i).then(function(h) {		// returns hash of document/paper
 								var hash = h;
-								contractInstance.displayDocStatus(hash).then(function(stat) {
+								contractInstance.displayDocStatus(hash).then(function(stat) {		// returns status of the document/paper
 									stat = parseInt(stat);
 									document.getElementById("uploads").style.display = "block";
 									document.getElementById("no-uploads").style.display = "none";
@@ -52,16 +53,19 @@ window.App = {
 										document.getElementById("uploads").innerHTML += "<div class='files'><span class='hash'><a href='http://127.0.0.1:8080/ipfs/" + hash + "' target=_blank>" + hash + "</a></span><span class='file-status'><button class='btn-upvote' onclick=" + str1 + ">Upvote</button><button class='btn-downvote' onclick=" + str2 + ">Downvote</button></span></div>";
 									}
 								}).catch(function(e) {
+									// Error handling if document status couldn't be fetched
 									console.log("Error: ", e);
 									swal("Error", "Couldn't fetch document status", "error");	
 								});
 							}).catch(function(e) {
+								// Error handling if document hash value cannot be fetched
 								console.log("Error: ", e);
 								swal("Error", "Couldn't display document hash value", "error");
 							});
 						}
 					}
 				}).catch(function(e) {
+					// Error handling if document couldn't be uploaded
 					console.log("Error: ", e);
 					swal("Error", "Couldn't display uploaded documents", "error");
 				});
@@ -73,6 +77,7 @@ window.App = {
 		}
 	},
 
+	// Function for upvoting a paper
 	upVote: function(hash){
 		User.deployed().then(function(contractInstance) {
 			contractInstance.upVote(hash, web3.eth.accounts[0], {gas: 200000, from: web3.eth.accounts[0]}).then(function() {
@@ -84,7 +89,7 @@ window.App = {
 		      	});				
 		    }).catch(function(e) {
 			    // There was an error! Handle it.
-			    swal("Something went wrong", "You can't audit a document if you've already done that. Also if the document has been already audited you cannot vote on its validity.", "error");
+			    swal("Something went wrong", "You can't review a document if you've already done that. Also if the document has been already approved/disapproved you cannot vote on its validity.", "error");
 			    console.log('Error in Upvoting!', eth, ':', e);
 			});
     
@@ -92,6 +97,7 @@ window.App = {
 		
 	},
 	
+	// Function for downvoting a paper
 	downVote: function(hash){
 		User.deployed().then(function(contractInstance) {
 			contractInstance.downVote(hash, web3.eth.accounts[0], {gas: 200000, from: web3.eth.accounts[0]}).then(function() {		
@@ -103,7 +109,7 @@ window.App = {
 		      	});					
 		    }).catch(function(e) {
 		        // There was an error! Handle it.
-			    swal("Something went wrong", "You can't audit a document if you've already done that. Also if the document has been already audited you cannot vote on its validity.", "error");
+			    swal("Something went wrong", "You can't review a document if you've already done that. Also if the document has been already approved/disapproved you cannot vote on its validity.", "error");
 		        console.log('Error in Upvoting!', eth, ':', e);
 	    	});
 		});

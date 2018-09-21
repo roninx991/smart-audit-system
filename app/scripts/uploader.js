@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 import 'bootstrap';
 
 // Import the page's CSS. Webpack will know what to do with it.
-import "../styles/client.css";
+import "../styles/uploader.css";
 
 // Import libraries we need.
 import { default as Web3 } from 'web3';
@@ -26,6 +26,7 @@ const ipfs = ipfsAPI('localhost','5001',{protocol: 'http'});
 
 window.App = {
 
+	// Function to be executed on submitting a document
 	onSubmit: function(event) {
 		event.preventDefault();
 		
@@ -54,6 +55,7 @@ window.App = {
 	    });
 	},
 	
+	// Selecting file to be uploaded
 	captureFile: function(event){
 			console.log('capture file...');
 			event.preventDefault();
@@ -67,6 +69,8 @@ window.App = {
 		}
 	},
 	
+
+	// App initialiser
 	start: function() {
 		// event.preventDefault();
 		var self = this;
@@ -117,6 +121,7 @@ window.App = {
 		}
 	},
 
+	// Function to display hash of document
 	displayHash: function(num) {
 		var self = this;
 		User.deployed().then(function(contractInstance) {
@@ -129,6 +134,7 @@ window.App = {
 		});
 	},
 
+	// Function to display status of document
 	displayDocStatus: function(str) {
 		User.deployed().then(function(contractInstance) {
 			contractInstance.displayDocStatus(str).then(function(stat) {
@@ -141,6 +147,7 @@ window.App = {
 		});		
 	},
 
+	// Function to check if current user is owner of the document
 	isOwner: function(str) {
 		User.deployed().then(function(contractInstance) {
 			contractInstance.isOwner(web3.eth.accounts[0], str).then(function(ans) {
@@ -152,6 +159,7 @@ window.App = {
 		});		
 	},
 
+	// Function to get number of documents uploaded
 	getDocCount: function() {
 		User.deployed().then(function(contractInstance) {
 			contractInstance.displayDocCount().then(function(count) {
