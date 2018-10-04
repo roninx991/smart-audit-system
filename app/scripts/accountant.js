@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 import 'bootstrap';
 
 // Import the page's CSS. Webpack will know what to do with it.
-import "../styles/reviewer.css";
+import "../styles/accountant.css";
 
 // Import libraries we need.
 import { default as Web3 } from 'web3';
@@ -120,6 +120,10 @@ window.App = {
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (!sessionStorage.getItem("user")) {
+  	window.location.href = "/";
+  }
+
   if (typeof web3 !== 'undefined') {
     console.warn("Using web3 detected from external source.");
     // Use Mist/MetaMask's provider

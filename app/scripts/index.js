@@ -25,8 +25,15 @@ window.App = {
     User.deployed().then(function(contractInstance) {
 
       contractInstance.getUser(eth).then(function(obj) {
-        // todo: maybe refresh users here but this could take a while... needs spinner / or message to refresh
-        console.log(obj);
+        if (obj) {
+          sessionStorage.setItem("user", eth);
+          if (obj[0] == "true") {
+            window.location.href = "organisation.html";
+          }
+          else {
+            window.location.href = "accountant.html";
+          }
+        }
 
       }).catch(function(e) {
         // There was an error! Handle it.
@@ -36,7 +43,6 @@ window.App = {
       });
     
     }); 
-
 
   },  
 
@@ -51,7 +57,7 @@ window.App = {
 
   createUser: function() {
     var eth = $('#sign-up-eth-address').val();
-    var category = $('#sign-up-user-type').val();
+    var category = document.getElementById('sign-up-user-type').checked + "";
 
     console.log('creating user on eth for', eth, category);
 
@@ -60,6 +66,7 @@ window.App = {
       contractInstance.insertUser(eth, category, {gas: 200000, from: web3.eth.accounts[0]}).then(function(index) {
         console.log(index);
         swal("Success", "User created successfully", "success");
+        window.location.reload();
         
       }).catch(function(e) {
         // There was an error! Handle it.
@@ -76,6 +83,9 @@ window.App = {
 // ===============================Window Loading =============================
 
 window.addEventListener('load', function() {
+  // if (sessionStorage.getItem("user")) {
+
+  // }
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
     console.warn("Using web3 detected from external source.");
@@ -86,7 +96,6 @@ window.addEventListener('load', function() {
   }
 
 App.start();
-  
 });
 
 
